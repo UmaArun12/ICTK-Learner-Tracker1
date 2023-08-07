@@ -96,17 +96,17 @@ router.put("/user/:id", auth, async (req, res) => {
     if (req.body.role === "Admin") {
       const { id } = req.params;
 
-      bcrypt
-        .hash(req.body.password, saltRounds)
-        .then(function (hash) {
-          req.body.password = hash;
+      // bcrypt
+      //   .hash(req.body.password, saltRounds)
+      //   .then(function (hash) {
+      //     req.body.password = hash;
 
-          userData.findByIdAndUpdate(id, { $set: req.body }).exec();
-          res.json({ message: "User info updated Successfully" });
-        })
-        .catch((err) => {
-          console.log("Hash not generated");
-        });
+      userData.findByIdAndUpdate(id, { $set: req.body }).exec();
+      res.json({ message: "User info updated Successfully" });
+      // })
+      // .catch((err) => {
+      //   console.log("Hash not generated");
+      // });
     } else {
       res.json({ message: "Unauthorized access" });
     }
